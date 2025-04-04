@@ -43,13 +43,32 @@ const deleteTask = (index) => {
 };
 
 const editTask = (index) => {
-    const taskinput = document.getElementById('taskinput');
-    taskinput.value = tasks[index].text;
-    tasks.splice(index, 1);
-    updateTaskList();
-    updateNo();
-    saveTasks();
+    const taskList = document.querySelectorAll('.taskitem p'); 
+    const taskText = tasks[index].text; 
+
+    const editInput = document.createElement('input');
+    editInput.type = 'text';
+    editInput.value = taskText;
+    editInput.className = 'edit-input';
+    editInput.style.background = "#303a9a"; 
+    editInput.style.color = "#fff";
+    editInput.style.padding = "5px";
+    editInput.style.borderRadius = "5px";
+    editInput.style.border = "2px solid #4c56af";
+
+    // Replace task text with input field
+    taskList[index].replaceWith(editInput);
+    editInput.focus(); 
+
+    editInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            tasks[index].text = editInput.value; 
+            updateTaskList(); 
+            saveTasks();
+        }
+    });
 };
+
 
 const updateNo = () => {
     const completedTasks = tasks.filter(task => task.completed).length;
