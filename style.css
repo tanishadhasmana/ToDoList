@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #000430;
+    color: #fff;
+}
+/* styling of top box */
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 120px;
+    max-width: 500px;
+    margin: 120px auto 0 auto;
+    
+   
+
+}
+.headbox{
+    border: 2px solid rgba(67, 17, 182, 0.753);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+   
+
+}
+#num{
+    width:100px ;
+    height: 100px;
+    background-color: rgb(63, 63, 153);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 30px;
+
+}
+#progressBar{
+    width: 100%;
+    height: 10px;
+    background-color: #1c2369;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+#progress{
+    width: 0%;
+    height: 10px;
+    background-color: aqua;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.contentbox{
+    width: 100%;
+    
+}
+/* styling of form of i/p writing */
+form{
+    margin-top: 60px;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+input{
+    flex: 1;
+    padding: 16px;
+    background:#1c2369;
+    border: #1f116b;
+    border-radius: 10px;
+    color: #fff;
+
+}
+
+button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f116b;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tasklist{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+    width: 100%;
+    list-style: none;
+
+}
+.taskitem{
+    width: 100%;
+    display: flex;
+    background-color: #1f116b;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.task{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+
+}
+
+.completed p{
+    text-decoration: line-through;
+    color: aqua;
+}
+.taskinput{
+    width: 20px;
+    height: 20px;
+    margin:0 10px ;
+    cursor: pointer;
+}
+
+.taskitem img{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+}
+/* to make responsive  */
+/* Responsive Design for Mobile */
+@media screen and (max-width: 600px) {
+    .container {
+        margin-top: 60px;
+        padding: 0 15px;
+        max-width: 100%;
+    }
+
+    .headbox {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #num {
+        width: 80px;
+        height: 80px;
+        font-size: 24px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+    }
+
+    .taskitem {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .icons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .taskitem img {
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+    }
+}
