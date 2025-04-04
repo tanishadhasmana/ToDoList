@@ -34,21 +34,21 @@ const toggleTaskComplete = (index) => {
 };
 
 const deleteTask = (index) => {
-    const confrimDelete=confirm("Are you sure you want to delete this?");
-    if(confrimDelete){
-    tasks.splice(index, 1);
-    updateTaskList();
-    updateNo();
-    saveTasks();}
+    const confirmDelete = confirm("Are you sure you want to delete this?");
+    if (confirmDelete) {
+        tasks.splice(index, 1);
+        updateTaskList();
+        updateNo();
+        saveTasks();
+    }
 };
 
 const editTask = (index) => {
-    const taskList = document.querySelectorAll('.taskitem p'); 
-    const taskText = tasks[index].text; 
-
+    const taskItem = document.querySelectorAll('.taskitem p')[index];
+    
     const editInput = document.createElement('input');
     editInput.type = 'text';
-    editInput.value = taskText;
+    editInput.value = tasks[index].text;
     editInput.className = 'edit-input';
     editInput.style.background = "#303a9a"; 
     editInput.style.color = "#fff";
@@ -56,19 +56,21 @@ const editTask = (index) => {
     editInput.style.borderRadius = "5px";
     editInput.style.border = "2px solid #4c56af";
 
-    // Replace task text with input field
-    taskList[index].replaceWith(editInput);
-    editInput.focus(); 
+    taskItem.replaceWith(editInput);
+    editInput.focus();
 
     editInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            tasks[index].text = editInput.value; 
-            updateTaskList(); 
+        if (e.key === 'Enter' && editInput.value.trim()) {
+            tasks[index].text = editInput.value.trim();
+            updateTaskList();
             saveTasks();
         }
     });
-};
 
+    editInput.addEventListener('blur', () => {
+        updateTaskList(); // Restore task list if input loses focus
+    });
+};
 
 const updateNo = () => {
     const completedTasks = tasks.filter(task => task.completed).length;
@@ -77,8 +79,9 @@ const updateNo = () => {
     document.getElementById('progress').style.width = `${progress}%`;
     document.getElementById("num").innerText = `${completedTasks}/${totalTasks}`;
 
-    if(totalTasks>=0 && completedTasks===totalTasks){
-        alert("You did all your work! What next will you do?");
+    // Show alert only when there are tasks and all are completed
+    if (totalTasks > 0 && completedTasks === totalTasks) {
+        setTimeout(() => alert("You did all your work! What next will you do?"), 300);
     }
 };
 
@@ -87,10 +90,10 @@ const updateTaskList = () => {
     taskList.innerHTML = "";
 
     tasks.forEach((task, index) => {
-        const listitem = document.createElement('li');
-        listitem.classList.add("taskitem");
+        const listItem = document.createElement('li');
+        listItem.classList.add("taskitem");
         
-        listitem.innerHTML = `
+        listItem.innerHTML = `
             <div class="task ${task.completed ? 'completed' : ''}">
                 <input type="checkbox" class="checkbox" ${task.completed ? "checked" : ""} onChange="toggleTaskComplete(${index})"/>
                 <p>${task.text}</p>
@@ -101,7 +104,7 @@ const updateTaskList = () => {
             </div>
         `;
         
-        taskList.appendChild(listitem);
+        taskList.appendChild(listItem);
     });
 };
 
