@@ -133,6 +133,7 @@ button{
     width: 24px;
     height: 24px;
     cursor: pointer;
+    filter: invert(1);
 
 }
 /* to make responsive  */
